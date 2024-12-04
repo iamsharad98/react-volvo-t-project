@@ -23,31 +23,55 @@ const Shop: React.FC = () => {
     }
   }, [id]);
 
-  if (loading) return <div>Loading...</div>;
+  if (loading)
+    return (
+      <div className="flex justify-center items-center h-screen">
+        <p className="text-xl font-semibold text-gray-600">Loading...</p>
+      </div>
+    );
 
-  if (!product) return <div>Product not found</div>;
+  if (!product)
+    return (
+      <div className="flex justify-center items-center h-screen">
+        <p className="text-xl font-semibold text-red-600">Product not found</p>
+      </div>
+    );
 
   return (
-    <div>
-      <h1>{product.modelName} Shop</h1>
-      <img
-        src={product.imageUrl}
-        alt={product.modelName}
-        style={{ width: "100%", maxWidth: "800px" }}
-      />
-      <p>
-        <strong>Model Name:</strong> {product.modelName}
-      </p>
-      <p>
-        <strong>Body Type:</strong> {product.bodyType}
-      </p>
-      <p>
-        <strong>Model Type:</strong> {product.modelType}
-      </p>
-      <p>
-        <strong>Price:</strong> {product.bodyType}
-      </p>
-      {/* Add more details or shop options here */}
+    <div className="max-w-4xl mx-auto p-6 bg-white shadow-md rounded-lg mt-10">
+      <h1 className="text-3xl font-bold text-center text-gray-800 mb-6">
+        {product.modelName} Shop
+      </h1>
+      <div className="flex flex-col md:flex-row items-center gap-6">
+        <img
+          src={product.imageUrl}
+          alt={product.modelName}
+          className="w-full md:w-1/2 rounded-lg shadow-lg"
+        />
+        <div className="text-section space-y-4 w-full">
+          <p className="text-lg">
+            <strong className="font-semibold text-gray-700">Model Name:</strong>{" "}
+            {product.modelName}
+          </p>
+          <p className="text-lg">
+            <strong className="font-semibold text-gray-700">Body Type:</strong>{" "}
+            {product.bodyType}
+          </p>
+          <p className="text-lg">
+            <strong className="font-semibold text-gray-700">Model Type:</strong>{" "}
+            {product.modelType}
+          </p>
+          <p className="text-lg">
+            <strong className="font-semibold text-gray-700">Price:</strong>{" "}
+            {product.bodyType} {/* You should replace this with the actual price */}
+          </p>
+          <div className="mt-6 flex justify-center">
+            <button className="bg-blue-600 text-white py-3 px-6 rounded-lg shadow hover:bg-blue-700 transition duration-200">
+              Buy Now
+            </button>
+          </div>
+        </div>
+      </div>
     </div>
   );
 };
